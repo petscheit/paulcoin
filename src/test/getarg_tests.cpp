@@ -25,143 +25,143 @@ ResetArgs(const std::string& strArg)
 
 BOOST_AUTO_TEST_CASE(boolarg)
 {
-    ResetArgs("-foo");
-    BOOST_CHECK(GetBoolArg("-foo"));
-    BOOST_CHECK(GetBoolArg("-foo", false));
-    BOOST_CHECK(GetBoolArg("-foo", true));
+    ResetArgs("-pac");
+    BOOST_CHECK(GetBoolArg("-pac"));
+    BOOST_CHECK(GetBoolArg("-pac", false));
+    BOOST_CHECK(GetBoolArg("-pac", true));
 
     BOOST_CHECK(!GetBoolArg("-fo"));
     BOOST_CHECK(!GetBoolArg("-fo", false));
     BOOST_CHECK(GetBoolArg("-fo", true));
 
-    BOOST_CHECK(!GetBoolArg("-fooo"));
-    BOOST_CHECK(!GetBoolArg("-fooo", false));
-    BOOST_CHECK(GetBoolArg("-fooo", true));
+    BOOST_CHECK(!GetBoolArg("-paco"));
+    BOOST_CHECK(!GetBoolArg("-paco", false));
+    BOOST_CHECK(GetBoolArg("-paco", true));
 
-    ResetArgs("-foo=0");
-    BOOST_CHECK(!GetBoolArg("-foo"));
-    BOOST_CHECK(!GetBoolArg("-foo", false));
-    BOOST_CHECK(!GetBoolArg("-foo", true));
+    ResetArgs("-pac=0");
+    BOOST_CHECK(!GetBoolArg("-pac"));
+    BOOST_CHECK(!GetBoolArg("-pac", false));
+    BOOST_CHECK(!GetBoolArg("-pac", true));
 
-    ResetArgs("-foo=1");
-    BOOST_CHECK(GetBoolArg("-foo"));
-    BOOST_CHECK(GetBoolArg("-foo", false));
-    BOOST_CHECK(GetBoolArg("-foo", true));
+    ResetArgs("-pac=1");
+    BOOST_CHECK(GetBoolArg("-pac"));
+    BOOST_CHECK(GetBoolArg("-pac", false));
+    BOOST_CHECK(GetBoolArg("-pac", true));
 
     // New 0.6 feature: auto-map -nosomething to !-something:
-    ResetArgs("-nofoo");
-    BOOST_CHECK(!GetBoolArg("-foo"));
-    BOOST_CHECK(!GetBoolArg("-foo", false));
-    BOOST_CHECK(!GetBoolArg("-foo", true));
+    ResetArgs("-nopac");
+    BOOST_CHECK(!GetBoolArg("-pac"));
+    BOOST_CHECK(!GetBoolArg("-pac", false));
+    BOOST_CHECK(!GetBoolArg("-pac", true));
 
-    ResetArgs("-nofoo=1");
-    BOOST_CHECK(!GetBoolArg("-foo"));
-    BOOST_CHECK(!GetBoolArg("-foo", false));
-    BOOST_CHECK(!GetBoolArg("-foo", true));
+    ResetArgs("-nopac=1");
+    BOOST_CHECK(!GetBoolArg("-pac"));
+    BOOST_CHECK(!GetBoolArg("-pac", false));
+    BOOST_CHECK(!GetBoolArg("-pac", true));
 
-    ResetArgs("-foo -nofoo");  // -foo should win
-    BOOST_CHECK(GetBoolArg("-foo"));
-    BOOST_CHECK(GetBoolArg("-foo", false));
-    BOOST_CHECK(GetBoolArg("-foo", true));
+    ResetArgs("-pac -nopac");  // -pac should win
+    BOOST_CHECK(GetBoolArg("-pac"));
+    BOOST_CHECK(GetBoolArg("-pac", false));
+    BOOST_CHECK(GetBoolArg("-pac", true));
 
-    ResetArgs("-foo=1 -nofoo=1");  // -foo should win
-    BOOST_CHECK(GetBoolArg("-foo"));
-    BOOST_CHECK(GetBoolArg("-foo", false));
-    BOOST_CHECK(GetBoolArg("-foo", true));
+    ResetArgs("-pac=1 -nopac=1");  // -pac should win
+    BOOST_CHECK(GetBoolArg("-pac"));
+    BOOST_CHECK(GetBoolArg("-pac", false));
+    BOOST_CHECK(GetBoolArg("-pac", true));
 
-    ResetArgs("-foo=0 -nofoo=0");  // -foo should win
-    BOOST_CHECK(!GetBoolArg("-foo"));
-    BOOST_CHECK(!GetBoolArg("-foo", false));
-    BOOST_CHECK(!GetBoolArg("-foo", true));
+    ResetArgs("-pac=0 -nopac=0");  // -pac should win
+    BOOST_CHECK(!GetBoolArg("-pac"));
+    BOOST_CHECK(!GetBoolArg("-pac", false));
+    BOOST_CHECK(!GetBoolArg("-pac", true));
 
     // New 0.6 feature: treat -- same as -:
-    ResetArgs("--foo=1");
-    BOOST_CHECK(GetBoolArg("-foo"));
-    BOOST_CHECK(GetBoolArg("-foo", false));
-    BOOST_CHECK(GetBoolArg("-foo", true));
+    ResetArgs("--pac=1");
+    BOOST_CHECK(GetBoolArg("-pac"));
+    BOOST_CHECK(GetBoolArg("-pac", false));
+    BOOST_CHECK(GetBoolArg("-pac", true));
 
-    ResetArgs("--nofoo=1");
-    BOOST_CHECK(!GetBoolArg("-foo"));
-    BOOST_CHECK(!GetBoolArg("-foo", false));
-    BOOST_CHECK(!GetBoolArg("-foo", true));
+    ResetArgs("--nopac=1");
+    BOOST_CHECK(!GetBoolArg("-pac"));
+    BOOST_CHECK(!GetBoolArg("-pac", false));
+    BOOST_CHECK(!GetBoolArg("-pac", true));
 
 }
 
 BOOST_AUTO_TEST_CASE(stringarg)
 {
     ResetArgs("");
-    BOOST_CHECK_EQUAL(GetArg("-foo", ""), "");
-    BOOST_CHECK_EQUAL(GetArg("-foo", "eleven"), "eleven");
+    BOOST_CHECK_EQUAL(GetArg("-pac", ""), "");
+    BOOST_CHECK_EQUAL(GetArg("-pac", "eleven"), "eleven");
 
-    ResetArgs("-foo -bar");
-    BOOST_CHECK_EQUAL(GetArg("-foo", ""), "");
-    BOOST_CHECK_EQUAL(GetArg("-foo", "eleven"), "");
+    ResetArgs("-pac -bar");
+    BOOST_CHECK_EQUAL(GetArg("-pac", ""), "");
+    BOOST_CHECK_EQUAL(GetArg("-pac", "eleven"), "");
 
-    ResetArgs("-foo=");
-    BOOST_CHECK_EQUAL(GetArg("-foo", ""), "");
-    BOOST_CHECK_EQUAL(GetArg("-foo", "eleven"), "");
+    ResetArgs("-pac=");
+    BOOST_CHECK_EQUAL(GetArg("-pac", ""), "");
+    BOOST_CHECK_EQUAL(GetArg("-pac", "eleven"), "");
 
-    ResetArgs("-foo=11");
-    BOOST_CHECK_EQUAL(GetArg("-foo", ""), "11");
-    BOOST_CHECK_EQUAL(GetArg("-foo", "eleven"), "11");
+    ResetArgs("-pac=11");
+    BOOST_CHECK_EQUAL(GetArg("-pac", ""), "11");
+    BOOST_CHECK_EQUAL(GetArg("-pac", "eleven"), "11");
 
-    ResetArgs("-foo=eleven");
-    BOOST_CHECK_EQUAL(GetArg("-foo", ""), "eleven");
-    BOOST_CHECK_EQUAL(GetArg("-foo", "eleven"), "eleven");
+    ResetArgs("-pac=eleven");
+    BOOST_CHECK_EQUAL(GetArg("-pac", ""), "eleven");
+    BOOST_CHECK_EQUAL(GetArg("-pac", "eleven"), "eleven");
 
 }
 
 BOOST_AUTO_TEST_CASE(intarg)
 {
     ResetArgs("");
-    BOOST_CHECK_EQUAL(GetArg("-foo", 11), 11);
-    BOOST_CHECK_EQUAL(GetArg("-foo", 0), 0);
+    BOOST_CHECK_EQUAL(GetArg("-pac", 11), 11);
+    BOOST_CHECK_EQUAL(GetArg("-pac", 0), 0);
 
-    ResetArgs("-foo -bar");
-    BOOST_CHECK_EQUAL(GetArg("-foo", 11), 0);
+    ResetArgs("-pac -bar");
+    BOOST_CHECK_EQUAL(GetArg("-pac", 11), 0);
     BOOST_CHECK_EQUAL(GetArg("-bar", 11), 0);
 
-    ResetArgs("-foo=11 -bar=12");
-    BOOST_CHECK_EQUAL(GetArg("-foo", 0), 11);
+    ResetArgs("-pac=11 -bar=12");
+    BOOST_CHECK_EQUAL(GetArg("-pac", 0), 11);
     BOOST_CHECK_EQUAL(GetArg("-bar", 11), 12);
 
-    ResetArgs("-foo=NaN -bar=NotANumber");
-    BOOST_CHECK_EQUAL(GetArg("-foo", 1), 0);
+    ResetArgs("-pac=NaN -bar=NotANumber");
+    BOOST_CHECK_EQUAL(GetArg("-pac", 1), 0);
     BOOST_CHECK_EQUAL(GetArg("-bar", 11), 0);
 }
 
 BOOST_AUTO_TEST_CASE(doubledash)
 {
-    ResetArgs("--foo");
-    BOOST_CHECK_EQUAL(GetBoolArg("-foo"), true);
+    ResetArgs("--pac");
+    BOOST_CHECK_EQUAL(GetBoolArg("-pac"), true);
 
-    ResetArgs("--foo=verbose --bar=1");
-    BOOST_CHECK_EQUAL(GetArg("-foo", ""), "verbose");
+    ResetArgs("--pac=verbose --bar=1");
+    BOOST_CHECK_EQUAL(GetArg("-pac", ""), "verbose");
     BOOST_CHECK_EQUAL(GetArg("-bar", 0), 1);
 }
 
 BOOST_AUTO_TEST_CASE(boolargno)
 {
-    ResetArgs("-nofoo");
-    BOOST_CHECK(!GetBoolArg("-foo"));
-    BOOST_CHECK(!GetBoolArg("-foo", true));
-    BOOST_CHECK(!GetBoolArg("-foo", false));
+    ResetArgs("-nopac");
+    BOOST_CHECK(!GetBoolArg("-pac"));
+    BOOST_CHECK(!GetBoolArg("-pac", true));
+    BOOST_CHECK(!GetBoolArg("-pac", false));
 
-    ResetArgs("-nofoo=1");
-    BOOST_CHECK(!GetBoolArg("-foo"));
-    BOOST_CHECK(!GetBoolArg("-foo", true));
-    BOOST_CHECK(!GetBoolArg("-foo", false));
+    ResetArgs("-nopac=1");
+    BOOST_CHECK(!GetBoolArg("-pac"));
+    BOOST_CHECK(!GetBoolArg("-pac", true));
+    BOOST_CHECK(!GetBoolArg("-pac", false));
 
-    ResetArgs("-nofoo=0");
-    BOOST_CHECK(GetBoolArg("-foo"));
-    BOOST_CHECK(GetBoolArg("-foo", true));
-    BOOST_CHECK(GetBoolArg("-foo", false));
+    ResetArgs("-nopac=0");
+    BOOST_CHECK(GetBoolArg("-pac"));
+    BOOST_CHECK(GetBoolArg("-pac", true));
+    BOOST_CHECK(GetBoolArg("-pac", false));
 
-    ResetArgs("-foo --nofoo");
-    BOOST_CHECK(GetBoolArg("-foo"));
+    ResetArgs("-pac --nopac");
+    BOOST_CHECK(GetBoolArg("-pac"));
 
-    ResetArgs("-nofoo -foo"); // foo always wins:
-    BOOST_CHECK(GetBoolArg("-foo"));
+    ResetArgs("-nopac -pac"); // pac always wins:
+    BOOST_CHECK(GetBoolArg("-pac"));
 }
 
 BOOST_AUTO_TEST_SUITE_END()
